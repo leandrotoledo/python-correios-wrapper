@@ -2,11 +2,9 @@
 
 ## Consultar CEP
 
-### Parâmetros
-
-[http://localhost:5000/consultacep/](http://localhost:5000/consultacep/)
-
 ### Exemplo
+
+[http://localhost:5000/consultacep/01230000](http://localhost:5000/consultacep/01230000)
 
 ```json
 {
@@ -23,11 +21,9 @@
 
 ## Rastrear Encomenda
 
-### Parâmetros
-
-[http://localhost:5000/rastreamento/](http://localhost:5000/rastreamento/)
-
 ### Exemplo
+
+[http://localhost:5000/rastreamento/TE123456785AA](http://localhost:5000/rastreamento/TE123456785AA)
 
 ```json
 ...
