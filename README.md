@@ -6,8 +6,6 @@
 
 [http://localhost:5000/consultacep/](http://localhost:5000/consultacep/)
 
-### Dados de Retorno
-
 ### Exemplo
 
 ```json
@@ -28,8 +26,6 @@
 ### Parâmetros
 
 [http://localhost:5000/rastreamento/](http://localhost:5000/rastreamento/)
-
-### Dados de Retorno
 
 ### Exemplo
 
