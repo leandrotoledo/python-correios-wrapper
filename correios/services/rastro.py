@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
 from suds.client import Client, WebFault
+from correios.services import WSDL
 
-import json
 
-
-class Rastro(object):
+class Rastro(WSDL):
 
     WSDL_URL = 'http://webservice.correios.com.br/service/rastro/Rastro.wsdl'
     WSDL_BOOTSTRAP = {
@@ -20,37 +19,21 @@ class Rastro(object):
     def _request(objeto, **kwargs):
         client = Client(Rastro.WSDL_URL)
 
-        request = {
-            'objetos': objeto,
-        }
-        request.update(kwargs)
-
         try:
-            result = client.service.RastroJson(**request)
+            result = client.service.RastroJson(objetos=objeto,
+                                               **Rastro.WSDL_BOOTSTRAP)
         except WebFault, e:
-            print(e)
+            # logging
+            result = ''
 
-            return []
-
-        try:
-            result = result.encode('utf-8')
-        except UnicodeEncodeError, e:
-            print(e)
-
-            return []
+        result = Rastro._toutf8(result)
+        result = Rastro._todict(result)
 
         try:
-            result = json.loads(result)
-            result = result['sroxml']['objeto']['evento']
-        except ValueError, e:
-            print(e)
-
-            return []
-
-        return result
+            return result['sroxml']['objeto']['evento']
+        except KeyError:
+            return dict()
 
     @staticmethod
     def RastroJson(objeto):
-        result = Rastro._request(objeto, **Rastro.WSDL_BOOTSTRAP)
-
-        return result
+        return Rastro._request(objeto, **Rastro.WSDL_BOOTSTRAP)

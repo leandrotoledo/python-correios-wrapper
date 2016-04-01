@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import sys
+sys.path.insert(0, '.')
+
 from correios.services import Rastro, AtendeCliente
 from flask import Flask
 from flask_restful import Resource, Api

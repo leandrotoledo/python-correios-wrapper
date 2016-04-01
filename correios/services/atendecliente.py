@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
 from suds.client import Client, WebFault
+from correios.services import WSDL
 
 
-class AtendeCliente(object):
+class AtendeCliente(WSDL):
 
     WSDL_URL = 'https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl'
 
@@ -11,34 +12,14 @@ class AtendeCliente(object):
     def _request(cep):
         client = Client(AtendeCliente.WSDL_URL)
 
-        request = {
-            'cep': cep,
-        }
-
         try:
-            result = client.service.consultaCEP(**request)
+            result = client.service.consultaCEP(cep=cep)
         except WebFault, e:
-            print(e)
+            # logging
+            result = ''
 
-            return []
-
-        try:
-            new_dict = dict()
-
-            for i in result.__keylist__:
-                if result[i]:
-                    new_dict[i] = result[i].encode('utf-8')
-                else:
-                    new_dict[i] = None
-        except UnicodeEncodeError, e:
-            print(e)
-
-            return []
-
-        return new_dict
+        return AtendeCliente._toutf8dict(result)
 
     @staticmethod
     def consultaCEP(cep):
-        result = AtendeCliente._request(cep)
-
-        return result
+        return AtendeCliente._request(cep)
