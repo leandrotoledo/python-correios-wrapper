@@ -4,7 +4,7 @@
 
 ### Parâmetros
 
-[http://localhost:5000/consultacep/(http://localhost:5000/consultacep/)]
+[http://localhost:5000/consultacep/](http://localhost:5000/consultacep/)
 
 ### Dados de Retorno
 
@@ -27,7 +27,7 @@
 
 ### Parâmetros
 
-[http://localhost:5000/rastreamento/(http://localhost:5000/rastreamento/)]
+[http://localhost:5000/rastreamento/](http://localhost:5000/rastreamento/)
 
 ### Dados de Retorno
 
